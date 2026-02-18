@@ -79,7 +79,7 @@ int redondeo() {
         cout << "El resultado de la division entre " << a << " Y " << b << " es: " << aprox << endl;
     }
     return 0;
-}
+};
 
 /*
     EJERCICIO - 7
@@ -104,7 +104,7 @@ int suma(){
     cout << "La suma de los numeros entre 0 y " << a << " es: " << total << endl;
 
     return 0;
-}
+};
 
 /*
     EJERCICIO - 9
@@ -127,7 +127,7 @@ int area_perimetro() {
     cout << "Perimetro: " << perimetro << endl;
 
     return 0;
-}
+};
 
 /*
     EJERCICIO - 11
@@ -148,7 +148,7 @@ int tabla() {
     }
 
     return 0;
-}
+};
 
 /*
     EJERCICIO - 13
@@ -169,7 +169,7 @@ int divisor() {
         }
     }
     return 0;
-}
+};
 
 /*
     EJERCICIO - 15
@@ -194,7 +194,7 @@ int suma_constante() {
 
     cout << "El resultado de la suma es: " << total << endl;
     return 0;
-}
+};
 
 /*
     EJERCICIO 17
@@ -221,8 +221,4 @@ int mayor_constante() {
 
     cout << "El numero mayor es: " << mayor << endl;
     return 0;
-}
-
-
-
-
+};
