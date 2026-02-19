@@ -222,3 +222,174 @@ int mayor_constante() {
     cout << "El numero mayor es: " << mayor << endl;
     return 0;
 };
+
+/*
+    Ejercicio - 19
+Escriba un programa que pida un número N e imprima si es o no un número primo.
+
+*/
+
+int numero_primo() {
+    int n;
+    cout << "Ingresa un numero: ";
+    cin >> n;
+
+    if (n < 2) {
+        cout << "No es primo" << endl;
+        return 0;
+    }
+
+    bool esPrimo = true;
+
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) { // si el resultado es 0, entonces n no es primo
+            esPrimo = false;
+            break;
+        }
+    }
+
+    if (esPrimo)
+        cout << n << " es primo" << endl;
+    else
+        cout << n << " no es primo" << endl;
+
+    return 0;
+}
+
+/*
+    EJERCICIO - 21
+Escriba un programa que pida un carácter C, si es una letra la debe convertir de
+mayúscula a minúscula y viceversa e imprimirla
+
+*/
+
+int mayus_minus() {
+    char a;
+
+    cout << "Ingrese la letra a convertir: ";
+    cin >> a;
+
+    if (a >= 'a' && a <= 'z') {
+        // Convertir a mayúscula
+        char mayuscula = a - ('a' - 'A');
+        cout << "La letra convertida a mayuscula es: " << mayuscula << endl;
+    }
+    else if (a >= 'A' && a <= 'Z') {
+        // Convertir a minúscula
+        char minuscula = a + ('a' - 'A');
+        cout << "La letra convertida a minuscula es: " << minuscula << endl;
+    }
+    else {
+        cout << "El caracter ingresado no es una letra." << endl;
+    }
+
+
+    return 0;
+}
+
+/*
+    EJERCICIO - 23
+Escriba un programa que pida dos números A y B e imprima en pantalla el mínimo
+común múltiplo entre los dos.
+
+*/
+
+int MIC() {
+    int a, b, temp;
+    int num1, num2; // Variables para guardar los originales
+
+    cout << "Ingrese el primer numero: ";
+    cin >> a;
+    num1 = a; // Guardamos original
+
+    cout << "Ingrese el segundo numero: ";
+    cin >> b;
+    num2 = b; // Guardamos original
+
+    while (b != 0) {
+        temp = b;
+        b = a % b;
+        a = temp;
+    }
+
+    // La formula = (num1 * num2) / MCD
+    cout << "El minimo comun multiplo es: " << (num1 * num2) / a << endl;
+
+    return 0;
+}
+
+/*
+    EJERCICIO - 25
+Escriba un programa que pida un número N e imprima en pantalla la cantidad de
+dígitos de N
+
+*/
+
+int contar(){
+    int a, contador = 0;
+
+    cout << "Ingrese el numero: ";
+    cin >> a;
+
+    // Usamos valor absoluto por si el usuario ingresa un número negativo
+    if (a < 0) a = -a;
+
+    do {
+        contador++;    // Contamos el dígito actual
+        a = a / 10;    // Eliminamos el último dígito
+    } while (a != 0);  // Solo se detiene cuando el número llega a cero absoluto
+
+    cout << "El numero tiene: " << contador << " digitos" << endl;
+    return 0;
+}
+
+/*
+    EJERCICIO - 27
+Escriba un programa que actúe como una calculadora con operaciones de suma,
+resta, multiplicación y división, el usuario debe ingresar los operandos y la operación a realizar
+
+*/
+
+int calculadora() {
+    float num1, num2, resultado;
+    char operacion;
+
+    cout << "Ingresa el primer numero: ";
+    cin >> num1;
+
+    cout << "Ingresa la operacion (+, -, *, /): ";
+    cin >> operacion;
+
+    cout << "Ingresa el segundo numero: ";
+    cin >> num2;
+
+    switch (operacion) {
+    case '+':
+        resultado = num1 + num2;
+        break;
+    case '-':
+        resultado = num1 - num2;
+        break;
+    case '*':
+        resultado = num1 * num2;
+        break;
+    case '/':
+        // No se puede dividir por 0
+        if (num2 != 0) {
+            resultado = num1 / num2;
+        } else {
+            cout << "Error: No se puede dividir por cero." << endl;
+            return 1; // Termina el programa con error
+        }
+        break;
+    default:
+        cout << "Operacion no valida." << endl;
+        return 1;
+    }
+
+    cout << "El resultado es: " << resultado << endl;
+
+    return 0;
+}
+
+

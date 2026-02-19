@@ -19,6 +19,11 @@ int main() {
         cout << "7 - Divisores de un numero" << endl;
         cout << "8 - Suma constante hasta ingresar cero" << endl;
         cout << "9 - Mayor constante hasta ingresar cero" << endl;
+        cout << "10 - Determinar numero primo" << endl;
+        cout << "11 - Convertir mayusculas y minusculas" << endl;
+        cout << "12 - Minimo comun multiplo" << endl;
+        cout << "13 - Contar cantidad de numeros en una cadena" << endl;
+        cout << "14 - Calculadora simple" << endl;
         cout << "0 - Salir\n" << endl;
         cout << "Opcion: ";
 
@@ -61,6 +66,26 @@ int main() {
         case 9:
             cout << "\n -- Mayor constante hasta ingresar 0 -- \n" << endl;
             mayor_constante();
+            break;
+        case 10:
+            cout << "\n -- Determinar numero primo -- \n" << endl;
+            numero_primo();
+            break;
+        case 11:
+        cout << "\n -- Convertir mayuscas y minusculas -- \n" << endl;
+            mayus_minus();
+            break;
+        case 12:
+            cout << "\n -- Minimo comun multiplo -- \n";
+            MIC();
+            break;
+        case 13:
+            cout << "\n -- Contador de numeros en cadena -- \n ";
+            contar();
+            break;
+        case 14:
+            cout << "\n -- Calculadora simple -- \n";
+            calculadora();
             break;
         case 0:
             cout << "Saliendo del programa..." << endl;
