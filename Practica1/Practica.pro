@@ -5,4 +5,5 @@ CONFIG -= qt
 
 SOURCES += \
     Ejercicios.cpp \
-    Menu.cpp
+    Menu.cpp \
+    problemas.cpp

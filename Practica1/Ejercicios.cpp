@@ -392,32 +392,7 @@ int calculadora() {
     return 0;
 }
 
-/*
-    PROBLEMA - 1
-Escriba un programa que identique si un carácter ingresado es una vocal, una consonante o ninguna de las 2 e imprima un mensaje según el caso.
 
-*/
-
-int es_letra() {
-    char c;
-
-    cout << "Ingrese un caracter: ";
-    cin >> c;
-
-    c = tolower(c);
-
-    if (c < 'a' || c > 'z') {
-        cout << "No es una letra.";
-    }
-    else if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
-        cout << "Es una vocal.";
-    }
-    else {
-        cout << "Es una consonante.";
-    }
-
-    return 0;
-}
 
 
 

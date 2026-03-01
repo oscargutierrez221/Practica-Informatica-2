@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Ejercicios.cpp"
+#include "problemas.cpp"
 
 using namespace std;
 
@@ -9,7 +10,7 @@ int main() {
     do {
         // 1. Mostrar el menú
         cout << "\n----- Bienvenido al menu de ejercicios -----\n" << endl;
-        cout << "Ingrese el numero del ejercicio que desea ejecutar" << endl << endl;
+        cout << "Ingrese el numero del ejercicio que desea ejecutar" << endl;
         cout << "1 - Residuo de la division entre A y B" << endl;
         cout << "2 - Mayor y menor de dos numeros" << endl;
         cout << "3 - Division con redondeo" << endl;
@@ -23,9 +24,8 @@ int main() {
         cout << "11 - Convertir mayusculas y minusculas" << endl;
         cout << "12 - Minimo comun multiplo" << endl;
         cout << "13 - Contar cantidad de numeros en una cadena" << endl;
-        cout << "14 - Calculadora simple" << endl << endl;
-        cout << "Problemas: " << endl;
-        cout << "15 - Es una vocal o una consonante" << endl;
+        cout << "14 - Calculadora simple" << endl;
+        cout << "15 - Es vocal o consonante" << endl;
         cout << "0 - Salir\n" << endl;
         cout << "Opcion: ";
 
@@ -34,63 +34,63 @@ int main() {
         // 2. Elejir
         switch (numero) {
         case 1:
-            cout << "\n -- Residuo de divisiones -- \n \n" << endl;
+            cout << "\n -- Residuo de divisiones -- \n" << endl;
             residuo();
             break;
         case 2:
-            cout << "\n -- Mayor y menor de dos numeros -- \n \n" << endl;
+            cout << "\n -- Mayor y menor de dos numeros -- \n" << endl;
             mayor_menor();
             break;
         case 3:
-            cout << "\n -- Division con redondeo -- \n \n" << endl;
+            cout << "\n -- Division con redondeo -- \n" << endl;
             redondeo();
             break;
         case 4:
-            cout << "\n -- Suma de numeros -- \n \n" << endl;
+            cout << "\n -- Suma de numeros -- \n" << endl;
             suma();
             break;
         case 5:
-            cout << "\n -- Area y Perimetro de un circulo -- \n \n" << endl;
+            cout << "\n -- Area y Perimetro de un circulo -- \n" << endl;
             area_perimetro();
             break;
         case 6:
-            cout << "\n -- Tabla de multiplicar -- \n \n" << endl;
+            cout << "\n -- Tabla de multiplicar -- \n" << endl;
             tabla();
             break;
         case 7:
-            cout << "\n -- Divisores de un numero -- \n \n" << endl;
+            cout << "\n -- Divisores de un numero -- \n" << endl;
             divisor();
             break;
         case 8:
-            cout << "\n -- Suma constante -- \n \n" << endl;
+            cout << "\n -- Suma constante -- \n" << endl;
             suma_constante();
             break;
         case 9:
-            cout << "\n -- Mayor constante hasta ingresar 0 -- \n \n" << endl;
+            cout << "\n -- Mayor constante hasta ingresar 0 -- \n" << endl;
             mayor_constante();
             break;
         case 10:
-            cout << "\n -- Determinar numero primo -- \n \n" << endl;
+            cout << "\n -- Determinar numero primo -- \n" << endl;
             numero_primo();
             break;
         case 11:
-            cout << "\n -- Convertir mayuscas y minusculas -- \n \n" << endl;
+            cout << "\n -- Convertir mayuscas y minusculas -- \n" << endl;
             mayus_minus();
             break;
         case 12:
-            cout << "\n -- Minimo comun multiplo -- \n \n";
+            cout << "\n -- Minimo comun multiplo -- \n";
             MIC();
             break;
         case 13:
-            cout << "\n -- Contador de numeros en cadena -- \n \n";
+            cout << "\n -- Contador de numeros en cadena -- \n ";
             contar();
             break;
         case 14:
-            cout << "\n -- Calculadora simple -- \n \n";
+            cout << "\n -- Calculadora simple -- \n";
             calculadora();
             break;
         case 15:
-            cout << "\n -- Es una vocal o consonante -- \n \n";
+            cout << "\n -- Es vocal o consonante -- \n";
             es_letra();
             break;
         case 0:
