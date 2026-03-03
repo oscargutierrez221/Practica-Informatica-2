@@ -9,8 +9,7 @@ int main() {
 
     do {
         // 1. Mostrar el menú
-        cout << "\n----- Bienvenido al menu de ejercicios -----\n" << endl;
-        cout << "Ingrese el numero del ejercicio que desea ejecutar" << endl;
+        cout << "\n----- Menu de ejercicios -----\n" << endl;
         cout << "1 - Residuo de la division entre A y B" << endl;
         cout << "2 - Mayor y menor de dos numeros" << endl;
         cout << "3 - Division con redondeo" << endl;
@@ -25,10 +24,15 @@ int main() {
         cout << "12 - Minimo comun multiplo" << endl;
         cout << "13 - Contar cantidad de numeros en una cadena" << endl;
         cout << "14 - Calculadora simple" << endl;
+        cout << "\n----- Menu de problemas -----\n" << endl;
         cout << "15 - Es vocal o consonante" << endl;
+        cout << "16 - Convinacion de meses y dias" << endl;
+        cout << "17 - Suma de la serie de Fibonacci" << endl;
+        cout << "18 - Suma de los numeros elevados a si mismos" << endl;
+        cout << "19 - Suma de los numeros primos inferiores al mismo numero" << endl;
+        cout << "20 - Suma de la diagonal espiral" << endl;
         cout << "0 - Salir\n" << endl;
         cout << "Opcion: ";
-
         cin >> numero;
 
         // 2. Elejir
@@ -92,6 +96,26 @@ int main() {
         case 15:
             cout << "\n -- Es vocal o consonante -- \n";
             es_letra();
+            break;
+        case 16:
+            cout << "\n -- Convinacion de meses y dias -- \n";
+            calendario();
+            break;
+        case 17:
+            cout << "\n -- Suma de la serie de Fibonacci -- \n";
+            fibonacci();
+            break;
+        case 18:
+            cout << "\n -- Suma de los digitos elevados a si mismos -- \n";
+            suma_digitos_elevados_a_si_mismos();
+            break;
+        case 19:
+            cout << "\n -- Suma de los numeros primos inferiores al mismo numero -- \n";
+            suma_primos_menores();
+            break;
+        case 20:
+            cout << "\n -- Espiral de numeros -- \n";
+            suma_diagonal_espiral();
             break;
         case 0:
             cout << "Saliendo del programa..." << endl;
