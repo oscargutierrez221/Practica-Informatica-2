@@ -165,7 +165,7 @@ int suma_primos_menores () {
     for (int num = 2; num < n; num++) {
         // Verificar si 'num' es primo
         bool es_primo = true;
-        for (int i = 2; i * i <= num; i++) {
+        for (int i = 2; i < num; i++) {
             if (num % i == 0) {
                 es_primo = false;
                 break;
@@ -180,67 +180,3 @@ int suma_primos_menores () {
 
     return 0;
 }
-
-/*
-    PROBLEMA - 15
-Empezando con el número 1 y moviéndose hacia la izquierda y en sentido horario
-se genera una espiral de números como la siguiente:
-
-21 22 23 24 25
-20 7  8  9  10
-19 6  1  2  11
-18 5  4  3  12
-17 16 15 14 13
-
-En el caso de esta espiral de 5x5, la suma de los números en la diagonal es 101.
-Escriba un programa que reciba un número impar n y calcule la suma de los números en la diagonal
-de una espiral de nxn.
-Nota: la salida del programa debe ser:
-En una espiral de 5x5, la suma es: 101.
-*/
-
-int suma_diagonal_espiral() {
-    int n;
-    cout << "Ingrese un numero impar n: ";
-    cin >> n;
-
-    if (n % 2 == 0) {
-        cout << "Por favor ingrese un numero impar." << endl;
-        return 0;
-    }
-
-    int suma = 1; // El centro de la espiral es siempre 1
-    int numero = 1; // El número actual en la espiral
-
-    for (int capa = 1; capa <= n / 2; capa++) {
-        for (int i = 0; i < 4; i++) { // Hay 4 esquinas por capa
-            numero += capa * 2; // Cada esquina se incrementa por el tamaño de la capa
-            suma += numero;
-        }
-    }
-
-    cout << "En una espiral de " << n << "x" << n << ", la suma es: " << suma << "." << endl;
-
-    return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -30,7 +30,6 @@ int main() {
         cout << "17 - Suma de la serie de Fibonacci" << endl;
         cout << "18 - Suma de los numeros elevados a si mismos" << endl;
         cout << "19 - Suma de los numeros primos inferiores al mismo numero" << endl;
-        cout << "20 - Suma de la diagonal espiral" << endl;
         cout << "0 - Salir\n" << endl;
         cout << "Opcion: ";
         cin >> numero;
@@ -112,10 +111,6 @@ int main() {
         case 19:
             cout << "\n -- Suma de los numeros primos inferiores al mismo numero -- \n";
             suma_primos_menores();
-            break;
-        case 20:
-            cout << "\n -- Espiral de numeros -- \n";
-            suma_diagonal_espiral();
             break;
         case 0:
             cout << "Saliendo del programa..." << endl;
