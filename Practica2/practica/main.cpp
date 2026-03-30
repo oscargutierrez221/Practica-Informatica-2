@@ -5,7 +5,3 @@ int main() {
     // fun_b(array, 10);
     arreglo_2();
 }
-
-
-
-

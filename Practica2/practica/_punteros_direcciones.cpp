@@ -11,19 +11,19 @@ Con ayuda del debugger, examine la representación en memoria del arreglo
 - Describa el efecto que tiene la función fun_b sobre el arreglo array.
 */
 
-void fun_a(int *px, int *py){
-    int tmp = *px;
-    *px = *py;
-    *py = tmp;
+void fun_a(int *px, int *py) {
+  int tmp = *px;
+  *px = *py;
+  *py = tmp;
 }
 
 void fun_b(int a[], int tam) {
-    int f, l;
-    int *b = a;
-    for (f = 0, l = tam - 1; f < l; f++, l--) {
-        fun_a(&b[f], &b[l]);
-        cout << b[f] << " " << b[l] << endl;
-    }
+  int f, l;
+  int *b = a;
+  for (f = 0, l = tam - 1; f < l; f++, l--) {
+    fun_a(&b[f], &b[l]);
+    cout << b[f] << " " << b[l] << endl;
+  }
 }
 
 /* - EJERCICIO #2
@@ -45,12 +45,12 @@ siguientes expresiones:
 • *b++
 */
 void arreglo_2() {
-    unsigned short b[4][2] = {{77, 50}, {5, 2}, {28, 39}, {99, 3}};
-    cout << b << endl;
-    cout << b + 2 << endl;
-    cout << *(b + 2) << endl;
-    cout << *(b + 2) + 1 << endl;
-    cout << *(*(b + 2) + 1) << endl;
-    cout << b[3][1] << endl;
-    cout << *b << endl;
+  unsigned short b[4][2] = {{77, 50}, {5, 2}, {28, 39}, {99, 3}};
+  cout << "Direccion de memoria de " << b << endl;
+  cout << "Direccion de memoria de b+2: " << b + 2 << endl;
+  cout << "Valor de *(b + 2): " << *(b + 2) << endl;
+  cout << "Valor de *(b + 2) + 1: " << *(b + 2) + 1 << endl;
+  cout << "Valor de *(*(b + 2) + 1): " << *(*(b + 2) + 1) << endl;
+  cout << "Valor de b[3][1]: " << b[3][1] << endl;
+  cout << "Valor de *b: " << *b << endl;
 }
