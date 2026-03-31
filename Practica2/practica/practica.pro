@@ -5,7 +5,9 @@ CONFIG -= qt
 
 SOURCES += \
         _punteros_direcciones.cpp \
-        main.cpp
+        main.cpp \
+        probelmas.cpp
 
 HEADERS += \
-    _punteros_direcciones.h
+    _punteros_direcciones.h \
+    probelmas.h
