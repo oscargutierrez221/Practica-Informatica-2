@@ -14,6 +14,9 @@ int main() {
     cout << "3. Transformar int a cadena" << endl;
     cout << "4. Eliminar caracter repetido en cadena" << endl;
     cout << "5. Suma de una cadena por partes" << endl;
+    cout << "6. Asientos de la sala de cine" << endl;
+    cout << "7. Interseccion entre 2 rectangulos" << endl;
+    cout << "8. Determinar numeros amigables de acuerdo a la suma" << endl;
     cout << "0. Salir" << endl;
     cout << "Ingrese una opcion: ";
     cin >> opcion;
@@ -52,6 +55,28 @@ int main() {
       cout << endl;
       cout << "Problema 5: Suma de una cadena por partes" << endl;
       suma_de_cadena();
+      cout << endl;
+      break;
+    }
+    case 6: {
+      cout << endl;
+      cout << "Problema 6: Asientos de la sala de cine" << endl;
+      cine();
+      cout << endl;
+      break;
+    }
+    case 7: {
+      cout << endl;
+      cout << "Calculo de interseccion entre triangulos" << endl;
+      interseccion_rectangulos();
+      cout << endl;
+      break;
+    }
+    case 8: {
+      cout << endl;
+      cout << "Problema 8: Determinar numeros amigables de acuerdo a la suma"
+           << endl;
+      numeros_amigables();
       cout << endl;
       break;
     }
