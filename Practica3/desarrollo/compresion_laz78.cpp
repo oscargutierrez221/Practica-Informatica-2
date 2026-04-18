@@ -3,6 +3,10 @@
 
 using namespace std;
 
-void comprimirLaz78() {
+void comprimir_lz78() {
   cout << "Comenzando la compresion con LZ78..." << endl;
+}
+
+void descompresion_lz78() {
+    cout << "Comenzando la descompresion con LZ78..." << endl;
 }
