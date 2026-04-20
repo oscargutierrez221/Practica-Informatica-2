@@ -1,11 +1,9 @@
-#include "_punteros_direcciones.h"
 #include "probelmas.h"
 #include <iostream>
 using namespace std;
 
 int main() {
-  // int array[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-  // fun_b(array, 10);
+
   int opcion;
   do {
     cout << "Bienvenido al menu de problemas de la Practica #2" << endl;
