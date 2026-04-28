@@ -1,7 +1,6 @@
 #ifndef PROBELMAS_H
 #define PROBELMAS_H
 
-#include <algorithm>
 void combinacion_billetes();
 void comparar_cadenas();
 void int_a_cadena(int numero, char cadena[]);

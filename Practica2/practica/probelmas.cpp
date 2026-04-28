@@ -1,6 +1,5 @@
 #include "probelmas.h"
 #include <iostream>
-#include <new>
 using namespace std;
 
 char sala[15][20];
@@ -161,51 +160,37 @@ Suma: 994.
 */
 
 void suma_de_cadena() {
-  int n;
-  char *cadena = new char[100];
+    int n;
+    char cadena[100];
 
-  cin.ignore();
-  cout << "Ingrese la cadena numerica: ";
-  cin.getline(cadena, 100);
-  cout << "Ingrese el tamano de cada grupo (n): ";
-  cin >> n;
+    cin.ignore();
+    cout << "Ingrese la cadena numerica: ";
+    cin.getline(cadena, 100);
+    cout << "Ingrese n: ";
+    cin >> n;
 
-  int longitud = 0;
-  while (cadena[longitud] != '\0') {
-    longitud++;
-  }
+    int len = 0;
+    while (cadena[len] != '\0') len++;
 
-  int resto = longitud % n;
-  int ceros = (resto == 0) ? 0 : n - resto;
+    int ceros = (len % n == 0) ? 0 : n - len % n;  // ceros que faltan a la izquierda
+    int grupos = (len + ceros) / n;
+    int suma = 0;
+    int original = 0;  // posicion en cadena original
 
-  int longitud_final = longitud + ceros;
-  char *cadena_rellena = new char[longitud_final + 1];
-
-  for (int i = 0; i < ceros; i++) {
-    cadena_rellena[i] = '0';
-  }
-  for (int i = 0; i < longitud; i++) {
-    cadena_rellena[ceros + i] = cadena[i];
-  }
-  cadena_rellena[longitud_final] = '\0';
-
-  int suma = 0;
-  int num_grupos = longitud_final / n;
-
-  for (int grupo = 0; grupo < num_grupos; grupo++) {
-    int valor_grupo = 0;
-    for (int d = 0; d < n; d++) {
-      valor_grupo = valor_grupo * 10 + (cadena_rellena[grupo * n + d] - '0');
+    for (int g = 0; g < grupos; g++) {
+        int num = 0;
+        for (int d = 0; d < n; d++) {
+            if (g == 0 && d < ceros) {
+                num = num * 10;           // agregar 0 (relleno)
+            } else {
+                num = num * 10 + (cadena[original++] - '0');  // digito real
+            }
+        }
+        suma += num;
     }
-    suma += valor_grupo;
-  }
 
-  cout << "Original: " << cadena << endl;
-  cout << "Suma: " << suma << endl;
-
-  // Liberar toda la memoria dinamica reservada
-  delete[] cadena;
-  delete[] cadena_rellena;
+    cout << "Original: " << cadena << endl;
+    cout << "Suma: " << suma << endl;
 }
 
 /* PROBLEMA - 11
@@ -232,12 +217,16 @@ void mostrar_sala() {
   cout << "   1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20"
        << endl;
 
-  for (int i = 0; i < 15; i++) {
+  for (int i = 0; i < 15; i++)
+  {
     cout << letras[i] << "  ";
-    for (int j = 0; j < 20; j++) {
-      if (sala[i][j] == '+') {
+    for (int j = 0; j < 20; j++)
+    {
+      if (sala[i][j] == '+')
+        {
         cout << "+  ";
-      } else {
+      }
+      else {
         cout << "-  ";
       }
     }
@@ -254,7 +243,8 @@ void reservar_asiento() {
   cin >> letra;
 
   fila = letra - 'A';
-  if (fila < 0 || fila > 14) {
+  if (fila < 0 || fila > 14)
+  {
     cout << "Fila invalida." << endl;
     return;
   }
@@ -262,7 +252,8 @@ void reservar_asiento() {
   cout << "Ingrese el numero de asiento (1-20): ";
   cin >> asiento;
 
-  if (asiento < 1 || asiento > 20) {
+  if (asiento < 1 || asiento > 20)
+  {
     cout << "Asiento invalido." << endl;
     return;
   }
@@ -280,7 +271,8 @@ void cancelar_asiento() {
   cin >> letra;
 
   fila = letra - 'A';
-  if (fila < 0 || fila > 14) {
+  if (fila < 0 || fila > 14)
+  {
     cout << "Fila invalida." << endl;
     return;
   }
@@ -288,7 +280,8 @@ void cancelar_asiento() {
   cout << "Ingrese el numero de asiento (1-20): ";
   cin >> asiento;
 
-  if (asiento < 1 || asiento > 20) {
+  if (asiento < 1 || asiento > 20)
+  {
     cout << "Asiento invalido." << endl;
     return;
   }
@@ -298,8 +291,10 @@ void cancelar_asiento() {
 }
 
 void cine() {
-  for (int i = 0; i < 15; i++) {
-    for (int j = 0; j < 20; j++) {
+  for (int i = 0; i < 15; i++)
+    {
+    for (int j = 0; j < 20; j++)
+      {
       sala[i][j] = '-';
     }
   }
@@ -362,45 +357,60 @@ void interseccion_rectangulos() {
 
   // Calcular la interseccion
   // Esquina izquierda de C: el maximo de las esquinas izquierdas de A y B
-  if (rectanguloA[0] > rectanguloB[0]) {
+  if (rectanguloA[0] > rectanguloB[0])
+  {
     rectanguloC[0] = rectanguloA[0];
-  } else {
-    rectanguloC[0] = rectanguloB[0];
+  }
+  else
+  {
+    rectanguloC[0] = rectanguloB[0]; // 2
   }
 
   // Esquina superior de C: el minimo de las esquinas superiores de A y B
-  if (rectanguloA[1] < rectanguloB[1]) {
-    rectanguloC[1] = rectanguloA[1];
-  } else {
+  if (rectanguloA[1] < rectanguloB[1])
+  {
+    rectanguloC[1] = rectanguloA[1]; // 0
+  }
+  else
+  {
     rectanguloC[1] = rectanguloB[1];
   }
 
   // Borde derecho de cada rectangulo
-  int derechaA = rectanguloA[0] + rectanguloA[2];
-  int derechaB = rectanguloB[0] + rectanguloB[2];
+  int derechaA = rectanguloA[0] + rectanguloA[2]; // 0 + 2 = 2
+  int derechaB = rectanguloB[0] + rectanguloB[2]; // 2 + 5 = 7
 
   // Ancho de C: minimo de los bordes derechos menos la x de C
-  if (derechaA < derechaB) {
-    rectanguloC[2] = derechaA - rectanguloC[0];
-  } else {
+  if (derechaA < derechaB)
+  {
+    rectanguloC[2] = derechaA - rectanguloC[0]; // 2 - 2 = 0
+  }
+  else
+  {
     rectanguloC[2] = derechaB - rectanguloC[0];
   }
 
   // Borde inferior de cada rectangulo
-  int abajoA = rectanguloA[1] + rectanguloA[3];
-  int abajoB = rectanguloB[1] + rectanguloB[3];
+  int abajoA = rectanguloA[1] + rectanguloA[3]; // 0 + 2 = 2
+  int abajoB = rectanguloB[1] + rectanguloB[3]; // 2 + 5 = 7
 
   // Altura de C: minimo de los bordes inferiores menos la y de C
-  if (abajoA < abajoB) {
+  if (abajoA < abajoB)
+  {
     rectanguloC[3] = abajoA - rectanguloC[1];
-  } else {
+  }
+  else
+  {
     rectanguloC[3] = abajoB - rectanguloC[1];
   }
 
   // Verificar si hay interseccion
-  if (rectanguloC[2] <= 0 || rectanguloC[3] <= 0) {
+  if (rectanguloC[2] <= 0 || rectanguloC[3] <= 0)
+  {
     cout << "Los rectangulos no se intersectan." << endl;
-  } else {
+  }
+  else
+  {
     cout << "Rectangulo de interseccion C: {" << rectanguloC[0] << ", "
          << rectanguloC[1] << ", " << rectanguloC[2] << ", " << rectanguloC[3]
          << "}" << endl;
