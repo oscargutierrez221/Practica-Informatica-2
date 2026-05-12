@@ -56,11 +56,12 @@ int main() {
       break;
     case 4:
       int metodo2;
-      do{
+      do {
       cout << "\n ¿Que metodo de descompresion deseas utilizar? \n";
       cout << "1. RLE \n";
       cout << "2. Lz78 \n";
       cout << "3. Volver al menu anterior \n";
+      cout << "Ingrese una opcion: ";
       cin >> metodo2;
       switch (metodo2) {
       case 1:
@@ -81,6 +82,7 @@ int main() {
       cout << "1. Encriptar \n";
       cout << "2. Desencriptar \n";
       cout << "3. Volver al menu anterior \n";
+      cout << "Ingrese una opcion: ";
       cin >> metodo3;
       switch (metodo3) {
       case 1:
@@ -101,8 +103,8 @@ int main() {
     default:
       cout << "\n Opcion invalida \n";
       break;
+    } while (metodo2 != 3);
     }
   } while (opcion != 0);
   return 0;
-}
 }
