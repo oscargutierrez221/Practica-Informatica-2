@@ -5,184 +5,158 @@
 using namespace std;
 
 void comprimir_lz78() {
-  // Ingresar ruta de archivos
-  char *archivo_entrada = new char[256];
-  char *archivo_salida = new char[256];
+  // Pedir rutas de archivos
+  char ruta_entrada[256];
+  char ruta_salida[256];
 
-  cout << "Por favor, ingrese la ruta del archivo: ";
+  cout << "Ruta del archivo a comprimir: ";
   cin.ignore();
-  cin.getline(archivo_entrada, 256);
+  cin.getline(ruta_entrada, 256);
 
-  cout << "Por favor, ingrese la ruta del archivo de salida: ";
-  cin.getline(archivo_salida, 256);
+  cout << "Ruta del archivo comprimido: ";
+  cin.getline(ruta_salida, 256);
 
-  ifstream archivo_in(archivo_entrada, ios::binary);
-  ofstream archivo_out(archivo_salida, ios::binary);
+  ifstream archivo_entrada(ruta_entrada, ios::binary);
+  ofstream archivo_salida(ruta_salida, ios::binary);
 
-  if (!archivo_in.is_open()) {
-    cout << "Error al abrir el archivo de entrada" << endl;
+  if (!archivo_entrada || !archivo_salida) {
+    cout << "Error al abrir archivos" << endl;
     return;
   }
 
-  if (!archivo_out.is_open()) {
-    cout << "Error al abrir el archivo de salida" << endl;
-    return;
+  // Leer todo el archivo
+  char texto_completo[1000000];
+  int total_caracteres = 0;
+  char caracter_actual;
+
+  while (total_caracteres < 1000000 && archivo_entrada.get(caracter_actual)) {
+    texto_completo[total_caracteres] = caracter_actual;
+    total_caracteres++;
   }
 
-  // Comprimir
+  cout << "Leidos " << total_caracteres << " caracteres" << endl;
 
-  char *texto = new char[1000000];
-  int n = 0;
-  char letra;
+  // Comprimir carácter por carácter
+  int posicion_actual = 0;
 
-  // Leer el archivo letra por letra (límite de 1000000 para no desbordar el
-  // arreglo)
-  while (n < 1000000 && archivo_in.get(letra)) {
-    texto[n] = letra;
-    n++;
-  }
-
-  cout << "Tamaño en bytes: " << n << endl
-       << "Caracteres leidos: " << n << endl;
-
-  char palabra[100];     // para la palabra actual
-  int letras = 0;    // cantidad de letras en la palabra actual
-  int posicion = 0;       // la posicion de la letra actual en el texto
-
-  while (posicion < n) {
-    palabra[letras] = texto[posicion];
-    letras++;
-    palabra[letras] = '\0';
-
-    int buscar = 0;
-    if (letras > 1) {
-      for (int j = 0; j <= posicion - letras + 1 && buscar == 0; j++) {
-        int encontrado = 1;
-        for (int k = 0; k < letras - 1 && encontrado == 1; k++) {
-          if (texto[j + k] != palabra[k]) encontrado = 0;
-        }
-        if (encontrado == 1) buscar = j + 1;  // encontrado
+  while (posicion_actual < total_caracteres) {
+    char caracter = texto_completo[posicion_actual];
+    
+    // Buscar si este carácter apareció antes
+    int posicion_anterior = 0;
+    
+    for (int i = 0; i < posicion_actual; i++) {
+      if (texto_completo[i] == caracter) {
+        posicion_anterior = i + 1;
+        break;
       }
     }
-
-    // escribo en el archivo de salida
-    archivo_out << buscar << "-" << palabra[letras - 1];
-
-    // reinicio palabra
-    letras = 0;
-    posicion++;
+    
+    archivo_salida << posicion_anterior << "-" << caracter << " ";
+    
+    posicion_actual++;
   }
 
   cout << "Compresion completada." << endl;
 
-  delete[] texto;
-  delete[] archivo_entrada;
-  delete[] archivo_salida;
-  archivo_in.close();
-  archivo_out.close();
+  archivo_entrada.close();
+  archivo_salida.close();
 }
 
 void descompresion_lz78() {
-  // Ingresar ruta de archivos
-  char *archivo_entrada = new char[256];
-  char *archivo_salida = new char[256];
+  // Pedir rutas de archivos
+  char ruta_entrada[256];
+  char ruta_salida[256];
 
-  cout << "Por favor, ingrese la ruta del archivo: ";
+  cout << "Ruta del archivo comprimido: ";
   cin.ignore();
-  cin.getline(archivo_entrada, 256);
+  cin.getline(ruta_entrada, 256);
 
-  cout << "Por favor, ingrese la ruta del archivo de salida: ";
-  cin.getline(archivo_salida, 256);
+  cout << "Ruta del archivo descomprimido: ";
+  cin.getline(ruta_salida, 256);
 
-  ifstream archivo_in(archivo_entrada, ios::binary);
-  ofstream archivo_out(archivo_salida, ios::binary);
+  ifstream archivo_comprimido(ruta_entrada, ios::binary);
+  ofstream archivo_descomprimido(ruta_salida, ios::binary);
 
-  if (!archivo_in.is_open()) {
-    cout << "Error al abrir el archivo de entrada" << endl;
+  if (!archivo_comprimido || !archivo_descomprimido) {
+    cout << "Error al abrir archivos" << endl;
     return;
   }
 
-  if (!archivo_out.is_open()) {
-    cout << "Error al abrir el archivo de salida" << endl;
-    return;
+  // Leer todo el archivo comprimido
+  char texto_comprimido[1000000];
+  int total_caracteres = 0;
+  char caracter;
+
+  while (total_caracteres < 1000000 && archivo_comprimido.get(caracter)) {
+    texto_comprimido[total_caracteres] = caracter;
+    total_caracteres++;
   }
 
-  // Descomprimir
+  cout << "Leidos " << total_caracteres << " caracteres comprimidos" << endl;
 
-  char *texto = new char[1000000];
-  int n = 0;
-  char letra;
+  // Guardar
+  char diccionario[100][100];
+  int longitudes[100];
+  int total_entradas = 0;
 
-  // Leer el archivo letra por letra (límite de 1000000 para no desbordar el
-  // arreglo)
-  while (n < 1000000 && archivo_in.get(letra)) {
-    texto[n] = letra;
-    n++;
-  }
+  int posicion = 0;  // Posición actual en el texto comprimido
 
-  cout << "Tamaño en bytes: " << n << endl
-       << "Caracteres leidos: " << n << endl;
-
-  // reconstruir desde tokens: formato "indice-letra "
-  char dict[100][100];   // diccionario reconstruido
-  int dictlen[100];      // longitudes
-  int nument = 0;        // entradas actuales
-  int i = 0;             // posicion en texto comprimido
-
-  while (i < n) {
-    // leer numero
-    int num = 0;
-    while (i < n && texto[i] >= '0' && texto[i] <= '9') {
-      num = num * 10 + (texto[i] - '0');
-      i++;
+  while (posicion < total_caracteres) {
+    // Leer posicion
+    int numero = 0;
+    while (posicion < total_caracteres && texto_comprimido[posicion] >= '0' && texto_comprimido[posicion] <= '9') {
+      numero = numero * 10 + (texto_comprimido[posicion] - '0');
+      posicion++;
     }
 
-    // saltar guion
-    if (i < n && texto[i] == '-') i++;
+    // Saltar el guión
+    if (posicion < total_caracteres && texto_comprimido[posicion] == '-') {
+      posicion++;
+    }
 
-    // leer letra
-    char letra = texto[i];
-    i++;
+    // Leer la letra
+    char letra = texto_comprimido[posicion];
+    posicion++;
 
-    // reconstruir cadena: dict[num-1] + letra
-    char cadena[100];
-    int clen = 0;
+    // Reconstruir la cadena
+    char resultado[100];
+    int longitud = 0;
 
-    if (num > 0 && num <= nument) {
-      // copiar del diccionario
-      for (int c = 0; c < dictlen[num - 1]; c++) {
-        cadena[clen] = dict[num - 1][c];
-        clen++;
+    // Si el número no es cero, copiar del diccionario
+    if (numero > 0 && numero <= total_entradas) {
+      for (int i = 0; i < longitudes[numero - 1]; i++) {
+        resultado[longitud] = diccionario[numero - 1][i];
+        longitud++;
       }
     }
 
-    // agregar letra nueva (si no es fin de archivo)
-    if (letra != 0 && letra != ' ') {
-      cadena[clen] = letra;
-      clen++;
+    // Agregar la letra actual
+    resultado[longitud] = letra;
+    longitud++;
+
+    // Escribir el resultado al archivo
+    for (int i = 0; i < longitud; i++) {
+      archivo_descomprimido << resultado[i];
     }
 
-    // escribir al archivo
-    for (int c = 0; c < clen; c++) {
-      archivo_out << cadena[c];
+    // Guardar en el diccionario si hay espacio
+    if (total_entradas < 100) {
+      for (int i = 0; i < longitud; i++) {
+        diccionario[total_entradas][i] = resultado[i];
+      }
+      longitudes[total_entradas] = longitud;
+      total_entradas++;
     }
 
-    // guardar en diccionario si no era fin
-    if (letra != 0 && letra != ' ' && nument < 100) {
-      for (int c = 0; c < clen; c++) dict[nument][c] = cadena[c];
-      dictlen[nument] = clen;
-      nument++;
+    // Saltar el espacio si hay
+    if (posicion < total_caracteres && texto_comprimido[posicion] == ' ') {
+      posicion++;
     }
-
-    // saltar espacio si hay
-    if (i < n && texto[i] == ' ') i++;
   }
 
   cout << "Descompresion completada." << endl;
 
-  delete[] texto;
-  delete[] archivo_entrada;
-  delete[] archivo_salida;
-  archivo_in.close();
-  archivo_out.close();
+  archivo_comprimido.close();
+  archivo_descomprimido.close();
 }

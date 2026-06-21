@@ -8,7 +8,7 @@ public:
     std::string nombre;
 
     // Constructor vacio
-    Enrutador() {}
+    // Enrutador() {}
 
     // Constructor con nombre
     Enrutador(std::string n) {

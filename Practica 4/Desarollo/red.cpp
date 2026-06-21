@@ -10,7 +10,7 @@ Red::Red() {
 
 void Red::guardarDatos() {
     // 1. Guardar enrutadores en "enrutadores.txt"
-    std::ofstream archivoE("enrutadores.txt");
+    std::ofstream archivoE("/home/david/Documentos/Practica-Informatica-2/Practica 4/Desarollo/enrutadores.txt");
     if (archivoE.is_open()) {
         for (float i = 0; i < enrutadores.size(); i++) {
             archivoE << enrutadores[i].nombre << "\n";
@@ -19,12 +19,10 @@ void Red::guardarDatos() {
     }
 
     // 2. Guardar conexiones en "conexiones.txt"
-    std::ofstream archivoC("conexiones.txt");
+    std::ofstream archivoC("/home/david/Documentos/Practica-Informatica-2/Practica 4/Desarollo/conexiones.txt");
     if (archivoC.is_open()) {
         for (float i = 0; i < conexiones.size(); i++) {
-            archivoC << conexiones[i].origen << " "
-                     << conexiones[i].destino << " "
-                     << conexiones[i].costo << "\n";
+            archivoC << conexiones[i].origen << " " << conexiones[i].destino << " " << conexiones[i].costo << "\n";
         }
         archivoC.close();
     }
@@ -35,25 +33,25 @@ void Red::cargarDatos() {
     conexiones.clear();
 
     // 1. Cargar enrutadores
-    std::ifstream archivoE("enrutadores.txt");
+    std::ifstream archivoE("/home/david/Documentos/Practica-Informatica-2/Practica 4/Desarollo/enrutadores.txt");
     if (archivoE.is_open()) {
-        std::string nom;
-        while (archivoE >> nom) {
-            Enrutador nuevo(nom);
+        std::string posicion;
+        while (archivoE >> posicion) {
+            Enrutador nuevo(posicion);
             enrutadores.push_back(nuevo);
         }
         archivoE.close();
     }
 
     // 2. Cargar conexiones
-    std::ifstream archivoC("conexiones.txt");
+    std::ifstream archivoC("/home/david/Documentos/Practica-Informatica-2/Practica 4/Desarollo/conexiones.txt");
     if (archivoC.is_open()) {
-        std::string ori, des;
+        std::string origen, destino;
         int costo;
-        while (archivoC >> ori >> des >> costo) {
+        while (archivoC >> origen >> destino >> costo) {
             Enlace nuevo;
-            nuevo.origen = ori;
-            nuevo.destino = des;
+            nuevo.origen = origen;
+            nuevo.destino = destino;
             nuevo.costo = costo;
             conexiones.push_back(nuevo);
         }
